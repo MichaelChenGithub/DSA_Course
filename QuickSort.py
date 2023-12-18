@@ -1,20 +1,23 @@
-"""
-Implement quick sort in Python.
-Input a list.
-Output a sorted list.
-"""
-def quicksort(array, l, base):
-    # keep the arr last index for recursive sub-quicksort
-    r = base
-    while l < base:
-        if array[l] >= array[base]:
-            array[l], array[base-1], array[base] = array[base-1], array[base], array[l]
-            base-=1
-        else:
-            l += 1
-        quicksort(array, 0, base-1)
-        quicksort(array, base+1, r)
+# Average Case: O(n log n)
+# Worst Case: O(n^2)
+def quicksort(array, l, r):
+    if l < r:
+        base = partition(array, l, r)
+        quicksort(array, l, base - 1)
+        quicksort(array, base + 1, r)
     return array
 
-test = [21, 4, 1, 3, 9, 20, 25, 6, 21, 14] # [1, 3, 4, 6, 9, 14, 20, 21, 21, 25]
-print(quicksort(test, 0, len(test)-1))
+def partition(array, l, r):
+    pivot = array[r]
+    i = l - 1
+
+    for j in range(l, r):
+        if array[j] <= pivot:
+            i += 1
+            array[i], array[j] = array[j], array[i]
+
+    array[i + 1], array[r] = array[r], array[i + 1]
+    return i + 1
+
+test = [21, 4, 1, 3, 9, 20, 25, 6, 21, 14]
+print(quicksort(test, 0, len(test) - 1))

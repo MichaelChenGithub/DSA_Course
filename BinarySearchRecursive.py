@@ -6,16 +6,15 @@ def binary_search(input_array, value, l, r):
     r -> max index of scaled array
     """
     if r >= l:
-        # calculate middle index -> n/2
-        mid_idx = (r+l)//2
+        mid_idx = (r + l) // 2
         if input_array[mid_idx] == value:
             return mid_idx
         elif value > input_array[mid_idx]:
-            return binary_search(input_array, value, mid_idx+1, r)
+            return binary_search(input_array, value, mid_idx + 1, r)
         elif value < input_array[mid_idx]:
-            return binary_search(input_array, value, l, mid_idx-1)
-    else:
-        return -1
+            return binary_search(input_array, value, l, mid_idx - 1)
+    
+    return -1
 
 test_list = [1,3,9,11,15,19,29]
 test_val1 = 25
